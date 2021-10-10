@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: tinder4dogs-db
+    image: postgres:13.4-alpine
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: tinder4dogs
+      PGDATA: /var/lib/postgresql/data/db-files/
+    volumes:
+      - type: volume
+        source: tinder4dogs-db-volume
+        target: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  tinder4dogs-db-volume:
+    name: tinder4dogs-db
